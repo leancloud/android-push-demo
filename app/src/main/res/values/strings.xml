@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PushDemo</string>
+    <string name="push">根据installationId来推送</string>
+    <string name="pushToChannel">根据频道来推送</string>
+</resources>

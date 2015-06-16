@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "com.avos.avoscloud.PushDemo"
+        minSdkVersion 14
+        targetSdkVersion 14
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    packagingOptions{
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:21.0.3'
+
+    compile 'cn.leancloud.android:avoscloud-sdk:v3.3+'
+
+    compile 'cn.leancloud.android:avoscloud-push:v3.3+@aar'
+    compile 'cn.leancloud.android:Java-WebSocket:1.2.0-leancloud'
+
+    compile 'cn.leancloud.android:avoscloud-statistics:v3.3+@aar'
+
+
+}
