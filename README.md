@@ -1,9 +1,9 @@
-
-![img](https://raw.githubusercontent.com/lzwjava/plan/master/push.png)
-
 ## 介绍
 
 一个 AVOS Cloud 推送消息的简单 Demo，直接在客户端推送消息，并自己接收。
+
+![img](https://raw.githubusercontent.com/lzwjava/plan/master/push.png)
+
 
 **实际生产环境中，建议从应用设置里关闭从客户端推送，并且使用我们提供的推送 web 平台或者 REST API 发起服务端推送更为合适。否则推送可能被滥用。**
 
