@@ -69,8 +69,8 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dependency-cache" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dex-cache" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/cn.leancloud.android/avoscloud-push/v3.3.4/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/cn.leancloud.android/avoscloud-statistics/v3.3.4/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/cn.leancloud.android/avoscloud-push/v3.7.1/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/cn.leancloud.android/avoscloud-statistics/v3.7.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jacoco" />
@@ -90,14 +90,14 @@
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="Java-WebSocket-1.2.0-leancloud" level="project" />
-    <orderEntry type="library" exported="" name="avoscloud-push-v3.3.4" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
+    <orderEntry type="library" exported="" name="avoscloud-push-v3.7.1" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
-    <orderEntry type="library" exported="" name="avoscloud-sdk-v3.3.4" level="project" />
     <orderEntry type="library" exported="" name="httpcore-4.2.4" level="project" />
+    <orderEntry type="library" exported="" name="avoscloud-sdk-v3.7.1" level="project" />
+    <orderEntry type="library" exported="" name="fastjson-1.1.39-leancloud" level="project" />
     <orderEntry type="library" exported="" name="android-async-http-1.4.6" level="project" />
-    <orderEntry type="library" exported="" name="fastjson-1.1.38-leancloud" level="project" />
-    <orderEntry type="library" exported="" name="avoscloud-statistics-v3.3.4" level="project" />
+    <orderEntry type="library" exported="" name="avoscloud-statistics-v3.7.1" level="project" />
     <orderEntry type="library" exported="" name="httpmime-4.2.4" level="project" />
   </component>
 </module>
