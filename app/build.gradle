@@ -29,13 +29,12 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:21.0.3'
+    // LeanCloud 基础包
+    compile ('cn.leancloud.android:avoscloud-sdk:v3.+')
 
-    compile 'cn.leancloud.android:avoscloud-sdk:v3.7.1'
+    // 推送与实时聊天需要的包
+    compile ('cn.leancloud.android:avoscloud-push:v3.+@aar'){transitive = true}
 
-    compile 'cn.leancloud.android:avoscloud-push:v3.7.1@aar'
-    compile 'cn.leancloud.android:Java-WebSocket:1.2.0-leancloud'
-
-    compile 'cn.leancloud.android:avoscloud-statistics:v3.7.1@aar'
-
-
+    // LeanCloud 统计包
+    compile ('cn.leancloud.android:avoscloud-statistics:v3.+')
 }
