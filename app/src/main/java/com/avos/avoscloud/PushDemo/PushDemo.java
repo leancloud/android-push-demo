@@ -9,7 +9,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.alibaba.fastjson.JSONObject;
-import com.avos.avoscloud.*;
+
+import cn.leancloud.AVInstallation;
+import cn.leancloud.AVObject;
+import cn.leancloud.AVPush;
+import cn.leancloud.AVQuery;
+import cn.leancloud.push.PushService;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 
 public class PushDemo extends Activity {
@@ -33,12 +40,25 @@ public class PushDemo extends Activity {
     // 显示的设备的 installationId，用于推送的设备标示
     t.setText("这个设备的 id: " + AVInstallation.getCurrentInstallation().getInstallationId());
     // 保存 installation 到服务器
-    AVInstallation.getCurrentInstallation().saveInBackground(new SaveCallback() {
+    AVInstallation.getCurrentInstallation().saveInBackground().subscribe(new Observer<AVObject>() {
       @Override
-      public void done(AVException e) {
-        AVInstallation.getCurrentInstallation().saveInBackground();
+      public void onSubscribe(Disposable d) {
+      }
+      @Override
+      public void onNext(AVObject avObject) {
+        // 关联 installationId 到用户表等操作。
+        String installationId = AVInstallation.getCurrentInstallation().getInstallationId();
+        System.out.println("保存成功：" + installationId );
+      }
+      @Override
+      public void onError(Throwable e) {
+        System.out.println("保存失败，错误信息：" + e.getMessage());
+      }
+      @Override
+      public void onComplete() {
       }
     });
+
     final EditText channelEdit = (EditText) this.findViewById(R.id.channel);
     final EditText msgEdit = (EditText) this.findViewById(R.id.message);
     final Button btn = (Button) this.findViewById(R.id.pushBtn);
@@ -55,21 +75,22 @@ public class PushDemo extends Activity {
         push.setQuery(AVInstallation.getQuery().whereEqualTo("installationId",
             AVInstallation.getCurrentInstallation().getInstallationId()));
         // 推送
-        push.sendInBackground(new SendCallback() {
+        push.sendInBackground().subscribe(new Observer<JSONObject>() {
           @Override
-          public void done(AVException e) {
-            Toast toast = null;
-            if (e == null) {
-              toast = Toast.makeText(context, "Send successfully.", Toast.LENGTH_SHORT);
-            } else {
-              toast =
-                  Toast.makeText(context, "Send fails with :" + e.getMessage(), Toast.LENGTH_LONG);
-            }
-            // 放心大胆地show，我们保证 callback 运行在 UI 线程。
-            toast.show();
+          public void onSubscribe(Disposable d) {
+          }
+          @Override
+          public void onNext(JSONObject jsonObject) {
+            Toast.makeText(context, "Send successfully.", Toast.LENGTH_SHORT).show();
+          }
+          @Override
+          public void onError(Throwable e) {
+            Toast.makeText(context, "Send fails with :" + e.getMessage(), Toast.LENGTH_LONG).show();
+          }
+          @Override
+          public void onComplete() {
           }
         });
-
       }
     });
 
@@ -92,10 +113,21 @@ public class PushDemo extends Activity {
 
         push.setData(jsonObject);
         push.setPushToAndroid(true);
-        push.sendInBackground(new SendCallback() {
+
+        push.sendInBackground().subscribe(new Observer<JSONObject>() {
           @Override
-          public void done(AVException e) {
-            Toast.makeText(getApplicationContext(), "send successfully", Toast.LENGTH_SHORT);
+          public void onSubscribe(Disposable d) {
+          }
+          @Override
+          public void onNext(JSONObject jsonObject) {
+            Toast.makeText(context, "Send successfully.", Toast.LENGTH_SHORT).show();
+          }
+          @Override
+          public void onError(Throwable e) {
+            Toast.makeText(context, "Send fails with :" + e.getMessage(), Toast.LENGTH_LONG).show();
+          }
+          @Override
+          public void onComplete() {
           }
         });
       }

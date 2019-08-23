@@ -1,13 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "26.0.2"
-
+    compileSdkVersion 26
     defaultConfig {
         applicationId "com.avos.avoscloud.PushDemo"
-        minSdkVersion 14
-        targetSdkVersion 14
+        minSdkVersion 26
+        targetSdkVersion 26
     }
 
     buildTypes {
@@ -16,12 +14,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
-
-    packagingOptions{
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
-    }
-
     lintOptions {
         abortOnError false
     }
@@ -29,10 +21,19 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:21.0.3'
-    // LeanCloud 基础包
-    compile ('cn.leancloud.android:avoscloud-sdk:v4.7.8')
 
+    implementation 'com.android.support:support-v4:26.0.0'
+    // LeanCloud 基础包
+    implementation ('cn.leancloud:storage-android:5.0.22'){
+        exclude group: 'com.alibaba', module: 'fastjson'
+        exclude group: 'org.ligboy.retrofit2', module: 'converter-fastjson'
+    }
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'com.alibaba:fastjson:1.1.70.android'
+    implementation 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
     // 推送与实时聊天需要的包
-    compile ('cn.leancloud.android:avoscloud-push:v4.7.8@aar'){transitive = true}
+    implementation('cn.leancloud:realtime-android:5.0.22') {
+        exclude group: 'com.alibaba', module: 'fastjson'
+        exclude group: 'org.ligboy.retrofit2', module: 'converter-fastjson'
+    }
 }
