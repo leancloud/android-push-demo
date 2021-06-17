@@ -1,22 +1,51 @@
 package com.avos.avoscloud.PushDemo;
-
 import android.app.Application;
 
-import cn.leancloud.AVLogger;
-import cn.leancloud.AVOSCloud;
+import cn.leancloud.LCInstallation;
+import cn.leancloud.LCLogger;
+import cn.leancloud.LCObject;
+import cn.leancloud.LeanCloud;
+import cn.leancloud.push.PushService;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
-/**
- * Created with IntelliJ IDEA. User: tangxiaomin Date: 4/19/13 Time: 12:57 PM
- */
 public class PushDemoApp extends Application {
 
   @Override
   public void onCreate() {
     super.onCreate();
     //开启调试日志
-    AVOSCloud.setLogLevel(AVLogger.Level.DEBUG);
+    LeanCloud.setLogLevel(LCLogger.Level.DEBUG);
     // 初始化应用信息
-    AVOSCloud.initialize(this, "Gvv2k8PugDTmYOCfuK8tiWd8-gzGzoHsz",
-        "dpwAo94n81jPsHVxaWwdxJVu");
+    LeanCloud.initialize("Gvv2k8PugDTmYOCfuK8tiWd8-gzGzoHsz","dpwAo94n81jPsHVxaWwdxJVu","https://gvv2k8pu.lc-cn-n1-shared.com");
+    // 订阅频道，当该频道消息到来的时候，打开对应的 Activity
+    // 参数依次为：当前的 context、频道名称、回调对象的类
+    PushService.subscribe(this, "public", PushDemo.class);
+    PushService.subscribe(this, "private", PushDemo.class);
+    PushService.subscribe(this, "protected", PushDemo.class);
+    //保存 Installation
+    LCInstallation.getCurrentInstallation().saveInBackground().subscribe(new Observer<LCObject>() {
+      @Override
+      public void onSubscribe(Disposable d) {
+      }
+      @Override
+      public void onNext(LCObject avObject) {
+        // 关联 installationId 到用户表等操作。
+        String installationId = LCInstallation.getCurrentInstallation().getInstallationId();
+        System.out.println("保存成功：" + installationId );
+      }
+      @Override
+      public void onError(Throwable e) {
+        System.out.println("保存失败，错误信息：" + e.getMessage());
+      }
+      @Override
+      public void onComplete() {
+      }
+    });
+
+    // 设置通知展示的默认 channel
+    PushService.setDefaultChannelId(this, "channelid01");
+    // 设置默认打开的 Activity
+    PushService.setDefaultPushCallback(this, PushDemo.class);
   }
 }
