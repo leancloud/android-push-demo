@@ -1,6 +1,6 @@
 ## 介绍
 
-一个 AVOS Cloud 推送消息的简单 Demo，直接在客户端推送消息，并自己接收。
+一个 LeanCloud 推送消息的简单 Demo，直接在客户端推送消息，并自己接收。
 
 ![img](https://raw.githubusercontent.com/lzwjava/plan/master/push.png)
 
@@ -16,12 +16,6 @@
 * 如何推送 `json` 数据以及获取数据
 * 如何从客户端发起推送
 
-
-## 如何运行
-
-* 导入本工程到 Eclipse
-* 右键点击项目，运行 `Run As -> Android Application`即可看到。
-
 ## 替换 App 信息
 
-Demo 使用的是公共的 app id 和 app key，您可以在`com.avos.avoscloud.PushDemo.PushDemoApp`修改成您自己的应用 id 和 key。
+Demo 使用的是公共的 AppId、AppKey 和 ServerUrl，您可以在`com.avos.avoscloud.PushDemo.PushDemoApp`修改成您自己的应用 AppId、AppKey 和 ServerUrl。
