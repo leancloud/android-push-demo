@@ -20,7 +20,7 @@ public class PushDemoApp extends Application {
         //开启调试日志
         LeanCloud.setLogLevel(LCLogger.Level.DEBUG);
         // 初始化应用信息
-        LeanCloud.initialize("Gvv2k8PugDTmYOCfuK8tiWd8-gzGzoHsz", "dpwAo94n81jPsHVxaWwdxJVu", "https://gvv2k8pu.lc-cn-n1-shared.com");
+        LeanCloud.initialize(this,"Gvv2k8PugDTmYOCfuK8tiWd8-gzGzoHsz", "dpwAo94n81jPsHVxaWwdxJVu", "https://gvv2k8pu.lc-cn-n1-shared.com");
         // 设置默认打开的 Activity
         PushService.setDefaultPushCallback(this, PushDemo.class);
 //     订阅频道，当该频道消息到来的时候，打开对应的 Activity
